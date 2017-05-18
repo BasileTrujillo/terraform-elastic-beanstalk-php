@@ -57,14 +57,13 @@ module "env" {
   # ELB
   enable_https = "true"
   elb_connection_timeout = "120"
-  ssl_certificate_id = "arn:aws:acm:eu-west-1:596346168805:certificate/459fbeb8-e872-4d0f-ba2d-c3cd9617ea48"
+  ssl_certificate_id = "arn:aws:acm:eu-west-1:00000000000:certificate/459fbeb8-e872-4d1f-ba0d-c3cd56175a48"
 
   # Security
-  vpc_id = "vpc-827f5ee6"
-  vpc_subnets = "subnet-b9ac9ddd"
-  elb_subnets = "subnet-d34370b7"
-  security_groups = "sg-2885d24e"
-  ssh_key_name = "Ireland_VPC"
+  vpc_id = "vpc-xxxxxxx"
+  vpc_subnets = "subnet-xxxxxxx"
+  elb_subnets = "subnet-xxxxxxx"
+  security_groups = "sg-xxxxxxx"
 }
 
 ##################################################
