@@ -32,7 +32,7 @@ resource "aws_elastic_beanstalk_application" "eb_app" {
 }
 
 module "env" {
-  source = "https://github.com/BasileTrujillo/terraform-elastic-beanstalk-php//eb-env"
+  source = "github.com/BasileTrujillo/terraform-elastic-beanstalk-php//eb-env"
   aws_region = "${var.aws_region}"
 
   # Application settings
@@ -70,7 +70,7 @@ module "env" {
 ## Route53 config
 ##################################################
 module "app_dns" {
-  source = "https://github.com/BasileTrujillo/terraform-elastic-beanstalk-php//r53-alias"
+  source = "github.com/BasileTrujillo/terraform-elastic-beanstalk-php//r53-alias"
   aws_region = "${var.aws_region}"
 
   domain = "example.io"

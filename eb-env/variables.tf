@@ -93,7 +93,7 @@ variable "elb_connection_timeout" {
 # Namespace: aws:elasticbeanstalk:container:php:phpini
 variable "eb_solution_stack_name" {
   type    = "string"
-  default = "64bit Amazon Linux 2016.09 v2.3.3 running PHP"
+  default = "64bit Amazon Linux 2017.03 v2.4.0 running PHP"
   description = "The Elastic Beanstalk solution stack name"
 }
 variable "php_version" {
