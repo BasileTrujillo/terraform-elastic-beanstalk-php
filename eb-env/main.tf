@@ -249,4 +249,22 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     name      = "composer_options"
     value     = "${var.composer_options}"
   }
+
+  # Configure environment properties for your application.
+  # EFS Environment variables
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "EFS_ID"
+    value     = "${var.efs_id}"
+  }
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "EFS_MOUNT_DIRECTORY"
+    value     = "${var.efs_mount_directory}"
+  }
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "AWS_REGION"
+    value     = "${var.aws_region}"
+  }
 }

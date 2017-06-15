@@ -156,3 +156,15 @@ variable "security_groups" {
   default = "elasticbeanstalk-default"
   description = "Lists the Amazon EC2 security groups to assign to the EC2 instances in the Auto Scaling group in order to define firewall rules for the instances."
 }
+
+# Elastic File Storage (Environment variables)
+variable "efs_id" {
+  type    = "string"
+  default = ""
+  description = "The EFS ID to put in an EB Environment variable called EFS_ID."
+}
+variable "efs_mount_directory" {
+  type    = "string"
+  default = ""
+  description = "The EFS Mount Directory to put in an EB Environment variable called EFS_MOUNT_DIRECTORY."
+}
