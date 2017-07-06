@@ -69,7 +69,7 @@ variable "healthcheck_url" {
 }
 variable "ignore_healthcheck" {
   type    = "string"
-  default = "true"
+  default = "false"
   description = "Do not cancel a deployment due to failed health checks. (true | false)"
 }
 variable "enable_http" {
