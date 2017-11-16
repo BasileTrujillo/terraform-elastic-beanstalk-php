@@ -6,7 +6,8 @@ Terraform script to setup AWS Elastic Beanstalk with a load-balanced PHP app
 
 * Create an Elastic Beanstalk Application and environment.
 * Setup the EB environment with PHP, an Elastic Loadbalancer and forward port from HTTP / HTTPS to the specified instance port.
-* It is also able to create a Route53 Alias to link your domain to the EB domain name
+* (Optionnal) Create a Route53 Alias to link your domain to the EB domain name
+* (Optionnal) Create a Cloudfront distribution on top of your Elastic Beanstalk environment
 
 
 ## Usage
@@ -179,11 +180,12 @@ module "eb_env" {
 
 ### Example
 
-Take a look at [example.tf](./example.tf) for a full example.
+* Take a look at [example.tf](./example.tf) for an example with Elastic Beanstalk and Route53.
+* Take a look at [example_with_cloudfront.tf](./example_with_cloudfront.tf) for an example with Elastic Beanstalk, Cloudfront and Route53.
 
 ## Customize
 
-Many options are available through variables. Feel free to look into `eb-env/variables.tf` to see all parameters you can setup.
+Many options are available through variables. Feel free to look into `variables.tf` inside each module to see all parameters you can setup.
 
 # Tips
 
@@ -208,3 +210,10 @@ packages:
     freetds-devel: []
     php56-mssql: []
 ```
+
+## Terraform related documentation
+
+* Elastic Beanstalk Application: https://www.terraform.io/docs/providers/aws/r/elastic_beanstalk_application.html
+* Elastic Beanstalk Environment: https://www.terraform.io/docs/providers/aws/r/elastic_beanstalk_environment.html
+* CloudFront: https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html
+* Route53: https://www.terraform.io/docs/providers/aws/d/route53_zone.html
