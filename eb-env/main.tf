@@ -156,6 +156,11 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     name      = "IgnoreHealthCheck"
     value     = "${var.ignore_healthcheck}"
   }
+  setting {
+    namespace = "aws:elasticbeanstalk:healthreporting:system"
+    name      = "SystemType"
+    value     = "${var.healthreporting}"
+  }
 
   # Configure your environment's architecture and service role.
   setting {

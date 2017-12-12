@@ -72,6 +72,11 @@ variable "ignore_healthcheck" {
   default = "false"
   description = "Do not cancel a deployment due to failed health checks. (true | false)"
 }
+variable "healthreporting" {
+  type    = "string"
+  default = "basic"
+  description = "Health reporting system (basic or enhanced). Enhanced health reporting requires a service role and a version 2 platform configuration."
+}
 variable "enable_http" {
   type = "string"
   default = "true"
