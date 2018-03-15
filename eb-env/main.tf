@@ -166,7 +166,13 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
   setting {
     namespace = "aws:elasticbeanstalk:environment"
     name      = "EnvironmentType"
-    value     = "LoadBalanced"
+    value     = "${var.environmentType}"
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:environment"
+    name      = "LoadBalancerType"
+    value     = "${var.loadBalancerType}"
   }
 
   # Configure the default listener (port 80) on a classic load balancer.
