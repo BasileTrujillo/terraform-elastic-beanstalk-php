@@ -177,43 +177,43 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
 
   # Configure the default listener (port 80) on a classic load balancer.
   setting {
-    namespace = "aws:elb:listener:80"
-    name      = "InstancePort"
-    value     = "${var.port}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:80" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "InstancePort" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.port : var.environmentType}"
   }
   setting {
-    namespace = "aws:elb:listener:80"
-    name      = "ListenerEnabled"
-    value     = "${var.enable_http}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:80" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "ListenerEnabled" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.enable_http : var.environmentType}"
   }
 
   # Configure additional listeners on a classic load balancer.
   setting {
-    namespace = "aws:elb:listener:443"
-    name      = "ListenerProtocol"
-    value     = "HTTPS"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:443" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "ListenerProtocol" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? "HTTPS" : var.environmentType}"
   }
   setting {
-    namespace = "aws:elb:listener:443"
-    name      = "InstancePort"
-    value     = "${var.port}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:443" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "InstancePort" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.port : var.environmentType}"
   }
   setting {
-    namespace = "aws:elb:listener:443"
-    name      = "SSLCertificateId"
-    value     = "${var.ssl_certificate_id}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:443" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "SSLCertificateId" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.ssl_certificate_id : var.environmentType}"
   }
   setting {
-    namespace = "aws:elb:listener:443"
-    name      = "ListenerEnabled"
-    value     = "${var.enable_https}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:listener:443" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "ListenerEnabled" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.enable_https : var.environmentType}"
   }
 
   # Modify the default stickiness and global load balancer policies for a classic load balancer.
   setting {
-    namespace = "aws:elb:policies"
-    name      = "ConnectionSettingIdleTimeout"
-    value     = "${var.elb_connection_timeout}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:policies" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "ConnectionSettingIdleTimeout" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.elb_connection_timeout : var.environmentType}"
   }
 
   # Configure a health check path for your application. (ELB Healthcheck)
