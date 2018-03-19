@@ -123,9 +123,9 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.vpc_subnets}"
   }
   setting {
-    namespace = "aws:ec2:vpc"
-    name      = "ELBSubnets"
-    value     = "${var.elb_subnets}"
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:ec2:vpc" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "ELBSubnets" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.elb_subnets : var.environmentType}"
   }
   setting {
     namespace = "aws:ec2:vpc"
@@ -169,11 +169,12 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.environmentType}"
   }
 
-  setting {
-    namespace = "aws:elasticbeanstalk:environment"
-    name      = "LoadBalancerType"
-    value     = "${var.loadBalancerType}"
-  }
+//  Commented because Terraform think this has changed each apply (even if there is no changes)
+//  setting {
+//    namespace = "aws:elasticbeanstalk:environment"
+//    name      = "LoadBalancerType"
+//    value     = "${var.loadBalancerType}"
+//  }
 
   # Configure the default listener (port 80) on a classic load balancer.
   setting {

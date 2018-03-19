@@ -122,6 +122,11 @@ variable "cache_forward_cookies" {
   default = "all"
   description = "Specifies whether you want CloudFront to forward cookies to the origin that is associated with this cache behavior. You can specify all, none or whitelist. If whitelist, you must include the subsequent whitelisted_names"
 }
+variable "cache_forward_headers" {
+  type    = "list"
+  default = []
+  description = "Specifies the Headers, if any, that you want CloudFront to vary upon for this cache behavior. Specify * to include all headers."
+}
 variable "cache_viewer_protocol_policy" {
   type    = "string"
   default = "redirect-to-https"

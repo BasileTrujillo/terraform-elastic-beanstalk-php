@@ -61,6 +61,7 @@ module "env" {
   # ELB
   enable_https = "true"
   elb_connection_timeout = "120"
+  cloudfront_default_certificate = false
   ssl_certificate_id = "arn:aws:acm:eu-west-1:00000000000:certificate/459fbeb8-e872-4d1f-ba0d-c3cd56175a48"
 
   # Security
