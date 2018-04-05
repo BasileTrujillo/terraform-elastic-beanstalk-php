@@ -224,6 +224,13 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.healthcheck_url}"
   }
 
+  # Configure notifications for your environment.
+  setting {
+    namespace = "aws:elasticbeanstalk:sns:topics"
+    name      = "Notification Topic ARN"
+    value     = "${var.notification_topic_arn}"
+  }
+
   # PHP Platform Options
   # http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-specific.html#command-options-php
   setting {

@@ -87,6 +87,11 @@ variable "healthreporting" {
   default = "basic"
   description = "Health reporting system (basic or enhanced). Enhanced health reporting requires a service role and a version 2 platform configuration."
 }
+variable "notification_topic_arn" {
+  type    = "string"
+  default = ""
+  description = "Amazon Resource Name for the topic you subscribed to."
+}
 variable "enable_http" {
   type = "string"
   default = "true"
