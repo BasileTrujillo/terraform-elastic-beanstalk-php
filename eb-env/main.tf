@@ -108,7 +108,7 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
   setting {
     namespace = "aws:elasticbeanstalk:environment"
     name      = "ServiceRole"
-    value     = "${aws_iam_instance_profile.beanstalk_service.name}"
+    value     = "${aws_iam_role.beanstalk_service.name}"
   }
 
   # Configure your environment to launch resources in a custom VPC
