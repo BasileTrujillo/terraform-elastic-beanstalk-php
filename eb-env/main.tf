@@ -57,22 +57,19 @@ resource "aws_iam_role" "beanstalk_ec2" {
 }
 EOF
 }
-resource "aws_iam_policy_attachment" "beanstalk_service" {
-  name = "${var.service_name}-${var.env}-elastic-beanstalk-service"
-  roles = ["${aws_iam_role.beanstalk_service.id}"]
+
+resource "aws_iam_role_policy_attachment" "beanstalk_service" {
+  role       = "${aws_iam_role.beanstalk_service.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSElasticBeanstalkService"
 }
-resource "aws_iam_policy_attachment" "beanstalk_service_health" {
-  name = "${var.service_name}-${var.env}-elastic-beanstalk-service-health"
-  roles = ["${aws_iam_role.beanstalk_service.id}"]
+resource "aws_iam_role_policy_attachment" "beanstalk_service_health" {
+  role       = "${aws_iam_role.beanstalk_service.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSElasticBeanstalkEnhancedHealth"
 }
-resource "aws_iam_policy_attachment" "beanstalk_ec2_web" {
-  name = "${var.service_name}-${var.env}-elastic-beanstalk-ec2-web"
-  roles = ["${aws_iam_role.beanstalk_ec2.id}"]
+resource "aws_iam_role_policy_attachment" "beanstalk_ec2_web" {
+  role       = "${aws_iam_role.beanstalk_ec2.name}"
   policy_arn = "arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier"
 }
-
 
 ##################################################
 ## Elastic Beanstalk
