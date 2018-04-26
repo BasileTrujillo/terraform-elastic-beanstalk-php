@@ -4,3 +4,5 @@
 
 # Terraform files
 /.terraform/
+
+node_modules/
