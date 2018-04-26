@@ -1,6 +1,6 @@
 # Terraform AWS Elastic Beanstalk PHP
 
-Terraform script to setup AWS Elastic Beanstalk with a load-balanced PHP app
+Terraform script to setup AWS Elastic Beanstalk with a load-balanced or Single Instance PHP app.
 
 ## What this script does
 

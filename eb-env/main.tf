@@ -142,6 +142,53 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.max_instance}"
   }
 
+  # Configure scaling triggers for your environment's Auto Scaling group.
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "BreachDuration" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_breach_duration : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "LowerBreachScaleIncrement" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_lower_breach_scale_increment : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "LowerThreshold" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_lower_threshold : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "MeasureName" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_measure_name : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "Period" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_period : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "Statistic" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_statistic : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "Unit" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_unit : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "UpperBreachScaleIncrement" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_upper_breachs_scale_increment : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:autoscaling:trigger" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "UpperThreshold" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.as_upper_threshold : var.environmentType}"
+  }
+
   # Configure rolling deployments for your application code.
   setting {
     namespace = "aws:elasticbeanstalk:command"

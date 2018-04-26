@@ -108,6 +108,52 @@ variable "elb_connection_timeout" {
   description = "Number of seconds that the load balancer waits for any data to be sent or received over the connection."
 }
 
+# Auto Scaling
+variable "as_breach_duration" {
+  type = "string"
+  default = "5"
+  description = "Amount of time, in minutes, a metric can be beyond its defined limit (as specified in the UpperThreshold and LowerThreshold) before the trigger fires."
+}
+variable "as_lower_breach_scale_increment" {
+  type = "string"
+  default = "-1"
+  description = "How many Amazon EC2 instances to remove when performing a scaling activity."
+}
+variable "as_lower_threshold" {
+  type = "string"
+  default = "2000000"
+  description = "If the measurement falls below this number for the breach duration, a trigger is fired."
+}
+variable "as_measure_name" {
+  type = "string"
+  default = "NetworkOut"
+  description = "Metric used for your Auto Scaling trigger."
+}
+variable "as_period" {
+  type = "string"
+  default = "5"
+  description = "Specifies how frequently Amazon CloudWatch measures the metrics for your trigger."
+}
+variable "as_statistic" {
+  type = "string"
+  default = "Average"
+  description = "Statistic the trigger should use, such as Average."
+}
+variable "as_unit" {
+  type = "string"
+  default = "Bytes"
+  description = "Unit for the trigger measurement, such as Bytes."
+}
+variable "as_upper_breachs_scale_increment" {
+  type = "string"
+  default = "1"
+  description = "How many Amazon EC2 instances to add when performing a scaling activity."
+}
+variable "as_upper_threshold" {
+  type = "string"
+  default = "6000000"
+  description = "If the measurement is higher than this number for the breach duration, a trigger is fired."
+}
 
 # PHP Platform Options
 # Namespace: aws:elasticbeanstalk:container:php:phpini
