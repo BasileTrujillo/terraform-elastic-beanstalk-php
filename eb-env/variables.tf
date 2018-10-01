@@ -77,6 +77,27 @@ variable "healthcheck_url" {
   default = "/"
   description = "The path to which to send health check requests."
 }
+variable "healthcheck_healthy_threshold" {
+  type    = "string"
+  default = "3"
+  description = "Consecutive successful requests before Elastic Load Balancing changes the instance health status."
+}
+variable "healthcheck_unhealthy_threshold" {
+  type    = "string"
+  default = "5"
+  description = "Consecutive unsuccessful requests before Elastic Load Balancing changes the instance health status."
+}
+variable "healthcheck_interval" {
+  type    = "string"
+  default = "10"
+  description = "The interval at which Elastic Load Balancing will check the health of your application's Amazon EC2 instances."
+}
+variable "healthcheck_timeout" {
+  type    = "string"
+  default = "5"
+  description = "Number of seconds Elastic Load Balancing will wait for a response before it considers the instance nonresponsive."
+}
+
 variable "ignore_healthcheck" {
   type    = "string"
   default = "false"

@@ -268,6 +268,28 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.healthcheck_url}"
   }
 
+  # Configure ELB Healthcheck
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:healthcheck" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "HealthyThreshold" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.healthcheck_healthy_threshold : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:healthcheck" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "UnhealthyThreshold" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.healthcheck_unhealthy_threshold : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:healthcheck" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "Interval" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.healthcheck_interval : var.environmentType}"
+  }
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elb:healthcheck" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "Timeout" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.healthcheck_timeout : var.environmentType}"
+  }
+
   # Configure notifications for your environment.
   setting {
     namespace = "aws:elasticbeanstalk:sns:topics"
