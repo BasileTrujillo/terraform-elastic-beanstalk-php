@@ -90,8 +90,8 @@ resource "aws_cloudfront_distribution" "app_cdn" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "FR", "GB", "DE"]
+      restriction_type = "${var.geo_restriction_type}"
+      locations        = "${var.geo_restriction_locations}"
     }
   }
 
