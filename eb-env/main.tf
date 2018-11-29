@@ -89,6 +89,21 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
   }
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
+    name      = "RootVolumeType"
+    value     = "${var.instance_volume_type}"
+  }
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "RootVolumeSize"
+    value     = "${var.instance_volume_size}"
+  }
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "RootVolumeIOPS"
+    value     = "${var.instance_volume_iops}"
+  }
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
     name      = "EC2KeyName"
     value     = "${var.ssh_key_name}"
   }

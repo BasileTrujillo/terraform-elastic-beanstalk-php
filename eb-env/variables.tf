@@ -24,6 +24,28 @@ variable "instance_type" {
   default = "t2.small"
   description = "The EC2 instance type"
 }
+variable "instance_volume_type" {
+  type    = "string"
+  default = "gp2"
+  description = "Volume type (magnetic, general purpose SSD or provisioned IOPS SSD) to use for the root Amazon EBS volume attached to your environment's EC2 instances."
+  # standard for magnetic storage
+  # gp2 for general purpose SSD
+  # io1 for provisioned IOPS SSD
+}
+variable "instance_volume_size" {
+  type    = "string"
+  default = "10"
+  description = "Storage capacity of the root Amazon EBS volume in whole GB. Required if you set RootVolumeType to provisioned IOPS SSD."
+  # 10 to 16384 GB for general purpose and provisioned IOPS SSD.
+  # 8 to 1024 GB for magnetic.
+}
+variable "instance_volume_iops" {
+  type    = "string"
+  default = "100"
+  description = "Desired input/output operations per second (IOPS) for a provisioned IOPS SSD root volume."
+  # The maximum ratio of IOPS to volume size is 30 to 1. For example, a volume with 3000 IOPS must be at least 100 GB.
+  # Value can be from 100 to 20000
+}
 variable "ssh_key_name" {
   type    = "string"
   default = "Ireland_VPC"
