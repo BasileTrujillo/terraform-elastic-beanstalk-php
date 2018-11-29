@@ -21,7 +21,7 @@ variable "env" {
 # Instance
 variable "instance_type" {
   type    = "string"
-  default = "t2.small"
+  default = "t3.small"
   description = "The EC2 instance type"
 }
 variable "instance_volume_type" {
@@ -202,7 +202,7 @@ variable "as_upper_threshold" {
 # Namespace: aws:elasticbeanstalk:container:php:phpini
 variable "eb_solution_stack_name" {
   type    = "string"
-  default = "64bit Amazon Linux 2017.03 v2.4.0 running PHP"
+  default = "64bit Amazon Linux 2018.03 v2.8.4 running PHP"
   description = "The Elastic Beanstalk solution stack name"
 }
 variable "php_version" {
