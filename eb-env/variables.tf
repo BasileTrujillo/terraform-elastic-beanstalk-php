@@ -198,6 +198,12 @@ variable "as_upper_threshold" {
   description = "If the measurement is higher than this number for the breach duration, a trigger is fired."
 }
 
+variable "stickiness_enabled" {
+  type = "string"
+  default = "false"
+  description = "Set to true to enable sticky sessions. This option is only applicable to environments with a classic load balancer or an application load balancer."
+}
+
 # PHP Platform Options
 # Namespace: aws:elasticbeanstalk:container:php:phpini
 variable "eb_solution_stack_name" {

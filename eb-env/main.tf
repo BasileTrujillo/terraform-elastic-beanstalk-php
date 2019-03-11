@@ -204,6 +204,13 @@ resource "aws_elastic_beanstalk_environment" "eb_env" {
     value     = "${var.environmentType == "LoadBalanced" ? var.as_upper_threshold : var.environmentType}"
   }
 
+  # Set to true to enable sticky sessions.
+  setting {
+    namespace = "${var.environmentType == "LoadBalanced" ? "aws:elasticbeanstalk:environment:process:default" : "aws:elasticbeanstalk:environment"}"
+    name      = "${var.environmentType == "LoadBalanced" ? "StickinessEnabled" : "EnvironmentType"}"
+    value     = "${var.environmentType == "LoadBalanced" ? var.stickiness_enabled : var.environmentType}"
+  }
+
   # Configure rolling deployments for your application code.
   setting {
     namespace = "aws:elasticbeanstalk:command"
